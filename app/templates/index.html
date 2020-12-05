@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <body>
+    <h1>Hi, {{ current_user.username }}!</h1>
+    <hr>
+    <h3>Join a pre-existing Game:</h3>
+    <header>
+      <a href="{{ url_for("games") }}">
+        <button class="button" style="cursor:pointer">Join a game</button>
+      </a>
+    </header>
+
+    <h3>Create Game:</h3>
+    <header>
+      <a href="{{ url_for("create_game") }}">
+        <button class="button" style="cursor:pointer">Create a game</button>
+      </a>
+    </header>
+
+    <!-- <hr>
+    <form>
+        <div>
+            <h3>Start a Game:</h3>
+            <label>Name</label>
+            <input type="text" id="gamename" name="gamename" placeholder="Enter the name" required>
+        </div>
+        <br>
+        <div>
+           <button class="button" type="submit" style="width: 8%; cursor:pointer">Create</button>
+       </div>
+    </form> -->
+    <!-- <script>
+        var csrftoken = "{{ csrf_token() }}";
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('form').onsubmit = () => {
+                const request = new XMLHttpRequest();
+                const gamename = document.querySelector('#gamename').value;
+                request.open('POST', "/create_game");
+                request.onload = () => {
+                    const data = JSON.parse(request.responseText);
+                    if (data.success) {
+                        document.querySelector('#msg').innerHTML = 'Game is created successfuly';
+                        document.querySelector('#msg').style.color = 'green'
+                    } else {
+                        document.querySelector('#msg').innerHTML = 'Sorry, this game already exists. please try another name';
+                        document.querySelector('#msg').style.color = 'red'
+                    }
+                };
+                const inputs = new FormData();
+                inputs.append('gamename', gamename);
+                request.setRequestHeader("X-CSRFToken", csrftoken);
+                request.send(inputs);
+                return false;
+            }
+        });
+    </script> -->
+    </body>
+{% endblock %}

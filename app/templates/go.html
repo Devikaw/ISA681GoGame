@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<link href="https://fonts.googleapis.com/css?family=Norican" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="logomark">
+        <div class="logomark__piece board__piece--light"></div>
+        <div class="logomark__piece logomark__piece--overlap board__piece--dark"></div>
+    </div>
+
+    <h1 class="logotype">Checkers</h1>
+
+    <nav class="navigation">
+        <a href="{{ url_for('play', board_size=6) }}" class="button">
+            <div class="button__text">6 &times; 6</div>
+            <div class="button__text-hover">Play</div>
+        </a>
+        <a href="{{ url_for('play', board_size=8) }}" class="button">
+            <div class="button__text">8 &times; 8</div>
+            <div class="button__text-hover">Play</div>
+        </a>
+        <a href="{{ url_for('play', board_size=10) }}" class="button">
+            <div class="button__text">10 &times; 10</div>
+            <div class="button__text-hover">Play</div>
+        </a>
+    </nav>
+{% endblock %}
