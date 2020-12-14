@@ -82,6 +82,10 @@ body {
   margin-top: -50px;
 }
 
+table.board {
+  width:30%
+}
+
 .board {
     /* border: 1.5vmin solid #181818; */
     border-spacing: 0;
@@ -100,8 +104,8 @@ body {
     border-style: solid;
     background-color: #CD853F;
     border-color: #A0522D;
-    width: 9vmin;
-    height: 9vmin;
+    width: 5vmin;
+    height: 5vmin;
     cursor: not-allowed;
     border-width: thin;
 }
