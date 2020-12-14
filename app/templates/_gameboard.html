@@ -3,6 +3,7 @@
       last_move: '{{ last_move }}'
     }
     var csrf_token = "{{ csrf_token() }}";
+    var gamename = '{{gamename}}'
 </script>
 
 {% if move_result == false %}
@@ -14,6 +15,9 @@
 <form method="post">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 </form>
+
+<button onclick="show_other_player_move()">Show Move</button>
+<button onclick="check_if_someone_won()">Stop Game</button>
 
 <table class="board">
     {% for row in board %}

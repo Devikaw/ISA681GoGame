@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Moves</title>
+    </head>
+    <body>
+    <h3>Moves for {{ game.gamename }}</h3>
+    <table style="width:80%">
+        <tr>
+            <th>Turn Player Name</th>
+            <th>(X,Y)</th>
+            <th>Color</th>
+            <th>Action</th>
+            <th>Time</th>
+        </tr>
+        {% for moves in gameMoves %}
+            {% if moves.game_id == game.id %}
+                <tr>
+                    <td ALIGN="center">{{ moves.turn_player_name }}</td>
+                    <td ALIGN="center">{{ moves.x_coor, moves.y_coor }}</td>
+                    <td ALIGN="center">{{ moves.color }}</td>
+                    <td ALIGN="center">{{ moves.player_action }}</td>
+                    <td ALIGN="center">{{ moves.time }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    <h2>Winner : {{ game.winner }}</h2>
+    <h2>Final Score</h2>
+    <h3>{{ game.player1_name }} : {{ game.player1_score }}</h3>
+    <h3>{{ game.player2_name }} : {{ game.player2_score }}</h3>
+    </body>
+{% endblock %}
+</html>

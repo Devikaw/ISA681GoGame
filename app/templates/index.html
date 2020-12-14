@@ -4,6 +4,38 @@
     <body>
     <h1>Hi, {{ current_user.username }}!</h1>
     <hr>
+    <h3>Your Stats:</h3>
+    <table class="center">
+        <tr>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>Ties</th>
+        </tr>
+        <tr>
+            <td ALIGN="center">{{ user.win }}</td>
+            <td ALIGN="center">{{ user.loss }}</td>
+            <td ALIGN="center">{{ user.ties }}</td>
+        </tr>
+    </table>
+    <br>
+    <h3>Global Stats:</h3>
+    <table class="center">
+        <tr>
+            <th>User</th>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>Draws</th>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td ALIGN="center">{{ user.username }}</td>
+                <td ALIGN="center">{{ user.win }}</td>
+                <td ALIGN="center">{{ user.loss }}</td>
+                <td ALIGN="center">{{ user.draw }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
     <h3>Join a pre-existing Game:</h3>
     <header>
       <a href="{{ url_for("games") }}">
@@ -11,49 +43,21 @@
       </a>
     </header>
 
-    <h3>Create Game:</h3>
-    <header>
-      <a href="{{ url_for("create_game") }}">
-        <button class="button" style="cursor:pointer">Create a game</button>
-      </a>
-    </header>
-
-    <!-- <hr>
-    <form>
+    <form action={{ url_for("create_game") }} method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
         <div>
-            <h3>Start a Game:</h3>
-            <label>Name</label>
+            <h3>Create a Game:</h3>
+            <label>Game Name</label>
             <input type="text" id="gamename" name="gamename" placeholder="Enter the name" required>
         </div>
-        <br>
-        <div>
-           <button class="button" type="submit" style="width: 8%; cursor:pointer">Create</button>
-       </div>
-    </form> -->
-    <!-- <script>
-        var csrftoken = "{{ csrf_token() }}";
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelector('form').onsubmit = () => {
-                const request = new XMLHttpRequest();
-                const gamename = document.querySelector('#gamename').value;
-                request.open('POST', "/create_game");
-                request.onload = () => {
-                    const data = JSON.parse(request.responseText);
-                    if (data.success) {
-                        document.querySelector('#msg').innerHTML = 'Game is created successfuly';
-                        document.querySelector('#msg').style.color = 'green'
-                    } else {
-                        document.querySelector('#msg').innerHTML = 'Sorry, this game already exists. please try another name';
-                        document.querySelector('#msg').style.color = 'red'
-                    }
-                };
-                const inputs = new FormData();
-                inputs.append('gamename', gamename);
-                request.setRequestHeader("X-CSRFToken", csrftoken);
-                request.send(inputs);
-                return false;
-            }
-        });
-    </script> -->
+        <button type="submit" style="cursor:pointer">Create a game</button>
+    </form>
+
+    <h3>Show Completed Games:</h3>
+    <header>
+      <a href="{{ url_for("completed_games") }}">
+        <button class="button" style="cursor:pointer">Show completed games</button>
+      </a>
+    </header>
     </body>
 {% endblock %}
