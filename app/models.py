@@ -8,6 +8,9 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)
     email = db.Column(db.String(120), index=True, unique=True, nullable=False)
     password = db.Column(db.String(128))
+    win = db.Column(db.Integer, default=0)
+    loss = db.Column(db.Integer, default=0)
+    draw = db.Column(db.Integer, default=0)
 
     def set_password(self, password):
         self.password = bcrypt.generate_password_hash(password, 10).decode('utf-8')
